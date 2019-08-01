@@ -1,19 +1,40 @@
 <template>
-  <list></list>
+  <view class="contain">
+    <main maindata="{{getmaindata}}"></main>
+  </view>
 </template>
 
-<script>
-  import { createPage } from '@mpxjs/core'
+<style lang="">
+  .contain{
+    padding: 0 20rpx;
+  }
+</style>
 
-  createPage({
-    onLoad () {}
-  })
+<script>
+import { createPage } from "@mpxjs/core";
+import api from "../api/basisAPI.js";
+createPage({
+  data: {
+    getmaindata: {}
+  },
+  onLoad() {
+    api.get("/index/index").then(res => {
+      console.log(res);
+      console.log(this);
+      // this.getmaindata = res.data
+      let getmaindata = res.data;
+      this.setData({
+        getmaindata
+      });
+    });
+  }
+});
 </script>
 
 <script type="application/json">
   {
     "usingComponents": {
-      "list": "../components/list"
+      "main":"../components/main/main.mpx"
     }
   }
 </script>
