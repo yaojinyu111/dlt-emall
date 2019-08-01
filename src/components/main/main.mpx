@@ -24,11 +24,9 @@ createComponent({
 });
 </script>
 
-<style >
-.container {
-}
+<style lang="less">
 </style>
-<script  type='application/json' lang='json'>
+<script type='application/json' lang='json'>
 { 
  "component": true,
  "usingComponents": {

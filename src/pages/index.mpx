@@ -4,7 +4,7 @@
   </view>
 </template>
 
-<style lang="">
+<style lang="less">
   .contain{
     padding: 0 20rpx;
   }
@@ -19,8 +19,6 @@ createPage({
   },
   onLoad() {
     api.get("/index/index").then(res => {
-      console.log(res);
-      console.log(this);
       // this.getmaindata = res.data
       let getmaindata = res.data;
       this.setData({
