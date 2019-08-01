@@ -1,12 +1,21 @@
 <template>
-  <view class="contain">
-    <main maindata="{{getmaindata}}"></main>
+  <view>
+    <view class="contain">
+      <main maindata="{{getmaindata}}"></main>
+    </view>
+    <intermediate>
+      <goods-style2 val="{{getmaindata}}"></goods-style2>
+    </intermediate>
   </view>
 </template>
 
 <style lang="less">
+page {
+  background: #eee;
+}
   .contain{
     padding: 0 20rpx;
+    background-color: #fff;
   }
 </style>
 
@@ -15,16 +24,24 @@ import { createPage } from "@mpxjs/core";
 import api from "../api/basisAPI.js";
 createPage({
   data: {
-    getmaindata: {}
+    getmaindata: {},
+    getgoodsdata:{}
   },
   onLoad() {
     api.get("/index/index").then(res => {
       // this.getmaindata = res.data
+      console.log(res)
       let getmaindata = res.data;
       this.setData({
         getmaindata
       });
     });
+    api.get("/recommendV2/2/16").then(res => {
+      console.log(res)
+      this.setData({
+        getgoodsdata:res.data
+      })
+    })
   }
 });
 </script>
@@ -32,7 +49,12 @@ createPage({
 <script type="application/json">
   {
     "usingComponents": {
-      "main":"../components/main/main.mpx"
+      "main":"../components/main/main.mpx",
+      "goods-style4":"../components/goodsStyle/goodsStyle4",
+      "goods-style3":"../components/goodsStyle/goodsStyle3",
+      "goods-style2":"../components/goodsStyle/goodsStyle2",
+      "intermediate":"../components/intermediate/intermediate"
+
     }
   }
 </script>

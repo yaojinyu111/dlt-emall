@@ -1,0 +1,48 @@
+<template minapp="mpx" xlang="wxml">
+    <view class="goods" wx:for="{{val.timePurchaseItems.itemList}}" wx:key="this*">
+        <image src="{{item.primaryPicUrl}}" />
+        <view>￥{{item.actualPrice}} <text class="retail-price">￥{{item.retailPrice}}</text></view>
+        <view class="dis-price">立减￥{{item.differencePrice}}</view>
+    </view>
+</template>
+
+
+<script>
+import { createPage } from "@mpxjs/core";
+
+createPage({
+    properties: {
+      val:Object
+    }
+})
+
+</script>
+
+<style lang="less" scoped>
+.goods {
+    width: 170rpx;
+    height: 270rpx;
+    font-size: 24rpx;
+    image {
+        width: 170rpx;
+        height: 170rpx;
+        background: #eee;
+    }
+
+    .retail-price {
+        color: #555;
+        text-decoration: line-through;
+    }
+
+    .dis-price {
+        color: #f00;
+    }
+}
+</style>
+
+<script type="application/json">
+{
+    "component": true
+}
+
+</script>

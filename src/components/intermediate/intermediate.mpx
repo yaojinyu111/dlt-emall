@@ -1,0 +1,31 @@
+<template minapp="mpx" xlang="wxml">
+    <view class="intermediate">
+        <slot></slot>
+    </view>
+</template>
+
+<script>
+import { createPage } from "@mpxjs/core";
+
+createPage({
+
+})
+</script>
+
+<style lang="less" scoped>
+.intermediate {
+    padding: 0 20rpx;
+}
+
+
+</style>
+
+<script type="application/json">
+{
+    "component": true,
+    "usingComponents":{
+      "goods-style4":"../goodsStyle/goodsStyle4",
+      "goods-style3":"../goodsStyle/goodsStyle3"
+    }
+}
+</script>
