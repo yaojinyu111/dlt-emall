@@ -1,11 +1,9 @@
 <template minapp='native' xlang='wxml'>
     <view class="goods" wx:for="{{val.categoryItemsV4}}" wx:key="this*">
-        <view wx:for="{{item.itemList}}" wx:for-item="goods">
+        <view wx:for="{{item.itemList}}" wx:for-item="goods" wx:for-index="index">
             <image src="{{goods.primaryPicUrl}}" />
-            <view>￥{{goods.activityPrice}} <text class="retail-price">￥{{goods.retailPrice}}</text></view>
-            <view class="back-db">
-                {{goods.repoCount}}
-            </view>
+            <view>￥{{goods.activityPrice || goods.retailPrice}} <text class="retail-price" wx:if="{{goods.activityPrice}}">￥{{goods.retailPrice}}</text></view>
+            <inlist list="{{[item,index]}}" ></inlist>
         </view>
     </view>
 </template>
@@ -36,21 +34,21 @@ import { createComponent } from '@mpxjs/core'
 
 <style lang='less'>
 .goods {
-    width: 170rpx;
-    height: 270rpx;
+
     font-size: 24rpx;
     position: relative;
     overflow: hidden;
     image {
-        width: 170rpx;
-        height: 170rpx;
-        background: #eee;
+        width: 220rpx;
+        height: 220rpx;
+        background: #fff;
     }
 
     .retail-price {
         color: #555;
         text-decoration: line-through;
     }
+
 
 }
  
@@ -59,7 +57,7 @@ import { createComponent } from '@mpxjs/core'
 { 
  "component": true,
  "usingComponents": {
-     "van-icon":"vant-weapp/dist/icon/index"
+     "inlist":"./inlist"
  }
 }
 </script>
