@@ -1,6 +1,6 @@
 <template>
   <view class="wrap">
-    <view class="contain">
+    <view class="contain" >
       <main maindata="{{getmaindata}}"></main>
     </view>
     <view class="contain-bot">
