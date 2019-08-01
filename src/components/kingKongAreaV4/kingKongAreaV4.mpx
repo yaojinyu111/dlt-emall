@@ -1,0 +1,134 @@
+<template minapp='native' xlang='wxml'>
+  <view class="container">
+    <scroll-view scroll-x="{{true}}" enable-flex="{{true}}" bindscroll="scrollchange">
+      <view class="boxss">
+        <view class="itemswrap" wx:for="{{kingKongs}}">
+          <navigator url>
+            <image class="imgwrap" src="{{item.picUrls[0]}}" />
+            <view class="title">{{item.title}}</view>
+          </navigator>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="items-span">
+      <view class="span" wx:class="{{acspanindex === index?'ac':''}}" wx:for="{{CkingKongs}}"></view>
+      <!-- <view class="span" wx:class="{{acindex === index?'ac':''}}"></view> -->
+    </view>
+  </view>
+</template>
+
+<script>
+import { createComponent } from "@mpxjs/core";
+var order = ["red", "yellow", "blue", "green", "red"];
+createComponent({
+  properties: {
+    kingKongs: Array,
+    acindex: {
+      type: Number,
+      value: 0
+    }
+  },
+  data: {
+    acspanindex:0
+  },
+  computed: {
+    CkingKongs() {
+      return this.kingKongs.length / 6;
+    }
+  },
+   lifetimes: {
+    attached: function() {
+      this.acspanindex = this.acindex
+      // 在组件实例进入页面节点树时执行
+    },
+    detached: function() {
+      // 在组件实例被从页面节点树移除时执行
+    }
+   },
+  pageShow() {
+    // 所在页面显示之后就会执行一次
+    console.log("page show");
+  },
+  pageHide() {
+    // 页面切入后台执行
+    console.log("page hide");
+  },
+  methods: {
+    scrollchange(e) {
+      let left = e.detail.scrollLeft;
+      if(left<=45){
+         this.acspanindex = 0
+      }
+      if(left > 45 &&left <= 70){
+        this.acspanindex = 1
+        console.log(this.acindex);
+      }
+      // left > 55 &&
+      //   left <= 65 &&
+      //   ((this.acindex = 1), console.log(this.acindex));
+
+      console.log(e);
+    }
+  }
+});
+</script>
+
+<style >
+.container {
+  position: relative;
+}
+.container scroll-view {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+.boxss {
+  display: flex;
+  flex-wrap: wrap;
+  width: 832rpx;
+  padding-left: 18rpx;
+}
+.itemswrap {
+  display: inline-block;
+}
+.itemswrap + .itemswrap {
+  margin-left: 32rpx;
+}
+.itemswrap .imgwrap {
+  width: 110rpx;
+  height: 110rpx;
+}
+.itemswrap:nth-child(7) {
+  margin-left: 0rpx;
+}
+.itemswrap:nth-child(n-6) {
+  margin-bottom: 20rpx;
+}
+.itemswrap .title {
+  font-size: 25rpx;
+  text-align: center;
+}
+
+.items-span {
+  position: absolute;
+  bottom: -20rpx;
+  text-align: center;
+  right: 0;
+  left: 0;
+}
+.items-span .span {
+  height: 5rpx;
+  background-color: lightgray;
+  width: 40rpx;
+  display: inline-block;
+}
+.items-span .ac {
+  background-color: deeppink;
+}
+</style>
+<script  type='application/json' lang='json'>
+{ 
+ "component": true
+}
+</script>
+

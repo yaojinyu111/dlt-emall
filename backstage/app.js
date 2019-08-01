@@ -45,6 +45,15 @@ app.get('/list/categorySimple/:categoryL1Id/:categoryL2Id', (req, succeed) => {
   })
 })
 
+// 获取今日必拼数据
+app.get('/recommendV2/:orderType/:size', (req, succeed) => {
+  let { orderType, size } = req.params
+  axios.get(`https://m.you.163.com/pin/min/item/recommendV2.json?orderType=${orderType}&size=${size}`).then(res => {
+    succeed.send(res.data)
+    succeed.end()
+  })
+})
+
 app.listen(3000, () => {
   console.log('Server is Running... @ http://localhost:3000')
 })

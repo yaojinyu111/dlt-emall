@@ -1,0 +1,107 @@
+<template minapp='native' xlang='wxml'>
+  <view class='container'>
+    <view class="icon">
+      <van-icon name="{{name}}" />
+    </view>
+      {{text}}
+  </view>
+</template>
+
+<script>
+import { createComponent } from '@mpxjs/core'
+  createComponent({
+    properties: {
+        list:Array,
+
+    },
+    data: {
+        text:null,
+        name:null,
+    },
+    pageShow() {
+      // 所在页面显示之后就会执行一次
+      console.log('page show')
+
+    },
+    pageHide() {
+      // 页面切入后台执行
+     console.log('page hide')
+
+    },
+    lifetimes: {
+        attached: function() {
+        // 在组件实例进入页面节点树时执行
+        let item = this.data.list[0]
+        let index = this.data.list[1]
+        let text
+        
+        console.log(item.itemList[index].repoCount,item.name)
+
+        switch (item.name) {
+            case "回购榜":
+                console.log(1)
+                text = "回购指数" + item.itemList[index].repoCount
+                this.setData({
+                  text,
+                  name:"point-gift"
+                })
+                break;
+            case "热销榜":
+                text = "热度" + item.itemList[index].heat 
+                this.setData({
+                  text,
+                  name:"fire"
+                })                   
+                break;
+
+            case "好评榜":
+                text = "好评率" + item.itemList[index].goodRate   
+                this.setData({
+                  text,
+                  name:"star"
+                })                 
+                break;
+        }
+        }
+    },
+    methods: {
+
+    }
+  })
+</script>
+
+<style lang='less'>
+.container {
+  font-size: 20rpx;
+  width: 216rpx;
+  height: 36rpx;
+  border: 2rpx #fff solid;
+  background: #eee;
+  color: #f00;
+  line-height: 38rpx;
+  border-radius: 15rpx;
+  display: flex;
+  .icon {
+    width: 34rpx;
+    height: 34rpx;
+    background: #f00;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20rpx;
+    text-align: center;
+    line-height: 38rpx;
+    border: 2rpx #fff solid;
+    margin-right: 5rpx;
+  }
+}
+
+</style>
+<script  type='application/json' lang='json'>
+{ 
+ "component": true,
+ "usingComponents":{
+     "van-icon":"vant-weapp/dist/icon/index"
+ }
+}
+</script>
+

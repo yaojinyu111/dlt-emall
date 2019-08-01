@@ -1,19 +1,59 @@
 <template>
-  <list></list>
+  <view class="wrap">
+    <view class="contain" >
+      <main maindata="{{getmaindata}}"></main>
+    </view>
+    <view class="contain-bot">
+      <manufacture manufacture="{{getmaindata.manufactureItems}}"></manufacture>
+    </view>
+  </view>
 </template>
 
-<script>
-  import { createPage } from '@mpxjs/core'
+<style lang="less">
+page {
+  background: #eee;
+}
+.contain {
+  padding: 0 20rpx;
+  background-color: #fff;
+}
+.contain-bot {
+  padding: 0 20rpx;
+}
+</style>
 
-  createPage({
-    onLoad () {}
-  })
+<script>
+import { createPage } from "@mpxjs/core";
+import api from "../api/basisAPI.js";
+createPage({
+  data: {
+    getmaindata: {},
+    getgoodsdata: {}
+  },
+  onLoad() {
+    api.get("/index/index").then(res => {
+      // this.getmaindata = res.data
+      console.log(res);
+      let getmaindata = res.data;
+      this.setData({
+        getmaindata
+      });
+    });
+    api.get("/recommendV2/2/16").then(res => {
+      console.log(res);
+      this.setData({
+        getgoodsdata: res.data
+      });
+    });
+  }
+});
 </script>
 
 <script type="application/json">
   {
     "usingComponents": {
-      "list": "../components/list"
+      "main":"../components/main/main.mpx",
+      "manufacture": "../components/manufacture/manufacture"
     }
   }
 </script>

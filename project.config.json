@@ -1,15 +1,17 @@
 {
-  "compileType": "miniprogram",
-  "setting": {
-    "newFeature": true,
-    "urlCheck": true,
-    "es6": false,
-    "postcss": true,
-    "minified": false,
-    "autoAudits": false
-  },
-  "appid": "wxf3c3b51a7579146c",
-  "projectname": "dlt-emall",
-  "description": "A mpx project",
-  "condition": {}
+	"compileType": "miniprogram",
+	"setting": {
+		"newFeature": true,
+		"urlCheck": true,
+		"es6": false,
+		"postcss": true,
+		"minified": false,
+		"autoAudits": false
+	},
+	"appid": "wxf3c3b51a7579146c",
+	"projectname": "dlt-emall",
+	"description": "A mpx project",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {}
 }
