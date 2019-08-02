@@ -4,7 +4,7 @@
   mpx.use(apiProxy, {usePromise: true})
   // app.jsa
   // 我来解决了第八个问题
-  // 2+2=4
+  // 2+2=6
   App({})
 </script>
 
